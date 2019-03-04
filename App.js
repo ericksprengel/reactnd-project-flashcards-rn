@@ -1,21 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { createStackNavigator, createAppContainer } from "react-navigation"
+import DeckList from 'src/src/components/DeckList'
+import DeckNew from 'src/src/components/DeckNew'
+import DeckDetail from 'src/src/components/DeckDetail'
+import CardNew from 'src/src/components/CardNew'
+import Quiz from 'src/src/components/Quiz'
+import QuizResult from 'src/src/components/QuizResult'
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppNavigator = createStackNavigator(
+  {
+    DeckList,
+    DeckNew,
+    DeckDetail,
+    CardNew,
+    Quiz,
+    QuizResult,
   },
-});
+  {
+    initialRouteName: "DeckList"
+  }
+);
+
+export default createAppContainer(AppNavigator);
