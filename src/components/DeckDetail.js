@@ -4,13 +4,15 @@ import {
   Text,
   View,
 } from 'react-native'
+import { connect } from 'react-redux'
 import commonStyles from 'src/src/utils/commonStyles'
 
 class DeckDetail extends React.PureComponent {
   render() {
+    const { deck } = this.props
     return (
       <View style={commonStyles.center}>
-        <Text>DeckDetail</Text>
+        <Text>DeckDetail - {deck.title}</Text>
         <Button
           title="go to CardNew"
           onPress={() => this.props.navigation.navigate('CardNew')}
@@ -24,4 +26,9 @@ class DeckDetail extends React.PureComponent {
   }
 }
 
-export default DeckDetail
+const mapStateToProps = ({ decks }, { navigation }) => {
+  return {
+    deck: decks[navigation.getParam('deckId')]
+  }
+}
+export default connect(mapStateToProps)(DeckDetail)

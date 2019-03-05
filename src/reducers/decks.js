@@ -1,9 +1,11 @@
 
 const initialState = {
   x1234: {
+    id: 'x1234',
     title: 'Animais',
   },
   x2345: {
+    id: 'x2345',
     title: 'Heróis',
   }
 }

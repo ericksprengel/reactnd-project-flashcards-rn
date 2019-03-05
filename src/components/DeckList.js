@@ -1,25 +1,55 @@
 import React from 'react'
 import {
   Button,
+  FlatList,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import commonStyles from 'src/src/utils/commonStyles'
 
+const DeckCard = ({ deck, onGoToDeckDetail }) => (
+  <TouchableOpacity
+    onPress={onGoToDeckDetail}
+  >
+    <Text>{deck.title}</Text>
+  </TouchableOpacity>
+)
+
 class DeckList extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Deck List',
+  }
+
+  deckKeyExtractor = (deck, index) => deck.id
+
+  onGoToDeckDetail = (deck) => {
+    this.props.navigation.navigate(
+      'DeckDetail',
+      {deckId: deck.id},
+    )
+  }
+
+  renderDeck = ({ item }) => (
+    <DeckCard
+      deck={item}
+      onGoToDeckDetail={() => this.onGoToDeckDetail(item)}
+    />
+  )
+
   render() {
-    console.log(this.props.decks)
+    const { decks } = this.props
     return (
       <View style={commonStyles.center}>
-        <Text>DeckList</Text>
-        <Button
-          title="go to DeckNew"
-          onPress={() => this.props.navigation.navigate('DeckNew')}
+        <FlatList
+          data={decks}
+          keyExtractor={this.deckKeyExtractor}
+          renderItem={this.renderDeck}
         />
         <Button
-          title="go to DeckDetail"
-          onPress={() => this.props.navigation.navigate('DeckDetail')}
+          title="Add Deck"
+          onPress={() => this.props.navigation.navigate('DeckNew')}
         />
       </View>
     )
