@@ -1,5 +1,9 @@
 import React from "react"
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import { createStackNavigator, createAppContainer } from "react-navigation"
+import reducer from 'src/src/reducers'
+import middleware from 'src/src/middleware'
 import DeckList from 'src/src/components/DeckList'
 import DeckNew from 'src/src/components/DeckNew'
 import DeckDetail from 'src/src/components/DeckDetail'
@@ -19,6 +23,20 @@ const AppNavigator = createStackNavigator(
   {
     initialRouteName: "DeckList"
   }
-);
+)
 
-export default createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator)
+
+
+const store = createStore(
+  reducer,
+  middleware,
+)
+
+const Root = () => (
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
+)
+
+export default Root
