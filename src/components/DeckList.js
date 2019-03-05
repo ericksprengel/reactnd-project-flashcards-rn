@@ -2,26 +2,27 @@ import React from 'react'
 import {
   Button,
   FlatList,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
+import { Ionicons } from '@expo/vector-icons'
 import { loadDecks } from 'src/src/actions/decks'
 import commonStyles from 'src/src/utils/commonStyles'
-
-const DeckCard = ({ deck, onGoToDeckDetail }) => (
-  <TouchableOpacity
-    onPress={onGoToDeckDetail}
-  >
-    <Text>{deck.title}</Text>
-  </TouchableOpacity>
-)
+import Deck from './Deck'
 
 class DeckList extends React.PureComponent {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Deck List',
-  }
+    headerRight: (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('DeckNew')}
+        style={{paddingHorizontal: 15}}
+      >
+        <Ionicons name="md-add" size={32} color="#000" />
+      </TouchableOpacity>
+    ),
+  })
 
   componentDidMount() {
     this.props.dispatch(loadDecks())
@@ -37,7 +38,7 @@ class DeckList extends React.PureComponent {
   }
 
   renderDeck = ({ item }) => (
-    <DeckCard
+    <Deck
       deck={item}
       onGoToDeckDetail={() => this.onGoToDeckDetail(item)}
     />
@@ -46,17 +47,11 @@ class DeckList extends React.PureComponent {
   render() {
     const { decks } = this.props
     return (
-      <View style={commonStyles.center}>
-        <FlatList
-          data={decks}
-          keyExtractor={this.deckKeyExtractor}
-          renderItem={this.renderDeck}
-        />
-        <Button
-          title="Create Deck"
-          onPress={() => this.props.navigation.navigate('DeckNew')}
-        />
-      </View>
+      <FlatList
+        data={decks}
+        keyExtractor={this.deckKeyExtractor}
+        renderItem={this.renderDeck}
+      />
     )
   }
 }

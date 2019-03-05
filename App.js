@@ -21,7 +21,8 @@ const AppNavigator = createStackNavigator(
     QuizResult,
   },
   {
-    initialRouteName: "DeckList"
+    initialRouteName: "DeckList",
+    cardStyle: { backgroundColor: '#eee' },
   }
 )
 
