@@ -1,24 +1,37 @@
 import React from 'react'
 import {
   Button,
+  StyleSheet,
   Text,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import commonStyles from 'src/src/utils/commonStyles'
 
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 32,
+    color: '#444',
+  },
+  cardsCounter: {
+    fontSize: 14,
+    color: '#777',
+    margin: 5,
+  },
+})
 class DeckDetail extends React.PureComponent {
   render() {
     const { deck } = this.props
     return (
       <View style={commonStyles.center}>
-        <Text>DeckDetail - {deck.title}</Text>
+        <Text style={styles.title}>{deck.title}</Text>
+        <Text style={styles.cardsCounter}>{deck.cardIds.length} cards</Text>
         <Button
-          title="go to CardNew"
+          title="Add Card"
           onPress={() => this.props.navigation.navigate('CardNew')}
         />
         <Button
-          title="go to Quiz"
+          title="Start Quiz"
           onPress={() => this.props.navigation.navigate('Quiz')}
         />
       </View>
