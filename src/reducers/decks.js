@@ -1,24 +1,11 @@
+import {
+  LOAD_DECKS,
+} from 'src/src/actions/decks'
 
-const initialState = {
-  x1234: {
-    id: 'x1234',
-    title: 'Animais',
-  },
-  x2345: {
-    id: 'x2345',
-    title: 'Heróis',
-  }
-}
-const decks = (state = initialState, action) => {
+const decks = (state = {}, action) => {
   switch (action.type) {
-    case 'ADD_DECK':
-      return {
-        ...state,
-        x12345: {
-          id: x12345,
-          title: action.title,
-        }
-      }
+    case LOAD_DECKS:
+      return action.decks
     default:
       return state
   }

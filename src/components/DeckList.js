@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
+import { loadDecks } from 'src/src/actions/decks'
 import commonStyles from 'src/src/utils/commonStyles'
 
 const DeckCard = ({ deck, onGoToDeckDetail }) => (
@@ -20,6 +21,10 @@ const DeckCard = ({ deck, onGoToDeckDetail }) => (
 class DeckList extends React.PureComponent {
   static navigationOptions = {
     title: 'Deck List',
+  }
+
+  componentDidMount() {
+    this.props.dispatch(loadDecks())
   }
 
   deckKeyExtractor = (deck, index) => deck.id
