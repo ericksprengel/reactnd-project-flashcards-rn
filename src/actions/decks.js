@@ -20,25 +20,25 @@ const actionAddDeck = (deck) => {
   }
 }
 
-const loadDecks = () => {
-  return async (dispatch, getState) => {
-    try {
-      const decks = await loadDecksFromStorage()
-      dispatch(actionLoadDecks(decks))
-    } catch (error) {
-      console.warn('Error in loadDecks', e)
-    }
+const loadDecks = () => async (dispatch, getState) => {
+  try {
+    const decks = await loadDecksFromStorage()
+    dispatch(actionLoadDecks(decks))
+    return decks
+  } catch (error) {
+    console.warn('Error in loadDecks', e)
+    return null
   }
 }
 
-const addDeck = (title) => {
-  return async (dispatch, getState) => {
-    try {
-      const deck = await addDeckFromStorage(title)
-      dispatch(actionAddDeck(deck))
-    } catch (error) {
-      console.warn('Error in loadDecks', e)
-    }
+const addDeck = (title) => async (dispatch, getState) => {
+  try {
+    const deck = await addDeckFromStorage(title)
+    dispatch(actionAddDeck(deck))
+    return deck
+  } catch (error) {
+    console.warn('Error in loadDecks', e)
+    return null
   }
 }
 

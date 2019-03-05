@@ -24,22 +24,25 @@ class DeckNew extends React.PureComponent {
     title: '',
   }
 
-  onAddDeck = () => {
-    this.props.addDeck(this.state.title)
-    this.props.navigation.goBack()
+  onAddDeck = async () => {
+    const deck = await this.props.addDeck(this.state.title)
+    this.props.navigation.replace(
+      'DeckDetail',
+      {deckId: deck.id},
+    )
   }
 
   render() {
     return (
       <View style={commonStyles.center}>
-        <Text>DeckNew</Text>
+        <Text>Title</Text>
         <TextInput
           style={styles.input}
           onChangeText={(title) => this.setState({title})}
           value={this.state.title}
         />
         <Button
-          title="Add"
+          title="Create Deck"
           onPress={this.onAddDeck}
         />
       </View>

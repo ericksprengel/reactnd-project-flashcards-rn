@@ -53,7 +53,7 @@ class DeckList extends React.PureComponent {
           renderItem={this.renderDeck}
         />
         <Button
-          title="Add Deck"
+          title="Create Deck"
           onPress={() => this.props.navigation.navigate('DeckNew')}
         />
       </View>
