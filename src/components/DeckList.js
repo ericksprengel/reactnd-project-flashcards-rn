@@ -4,10 +4,12 @@ import {
   Text,
   View,
 } from 'react-native'
+import { connect } from 'react-redux'
 import commonStyles from 'src/src/utils/commonStyles'
 
 class DeckList extends React.PureComponent {
   render() {
+    console.log(this.props.decks)
     return (
       <View style={commonStyles.center}>
         <Text>DeckList</Text>
@@ -24,4 +26,9 @@ class DeckList extends React.PureComponent {
   }
 }
 
-export default DeckList
+const mapStateToProps = ({ decks }) => {
+  return {
+    decks: Object.values(decks)
+  }
+}
+export default connect(mapStateToProps)(DeckList)
