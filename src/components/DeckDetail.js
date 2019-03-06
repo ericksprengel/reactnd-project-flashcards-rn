@@ -27,11 +27,11 @@ class DeckDetail extends React.PureComponent {
         <Text style={styles.title}>{deck.title}</Text>
         <Text style={styles.cardsCounter}>{deck.cardIds.length} cards</Text>
         <Button
-          title="Add Card"
+          title="Create New Question"
           onPress={() => this.props.navigation.navigate('CardNew')}
         />
         <Button
-          title="Start Quiz"
+          title="Start a Quiz"
           onPress={() => this.props.navigation.navigate('Quiz')}
         />
       </View>
