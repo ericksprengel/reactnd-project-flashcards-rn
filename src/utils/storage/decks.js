@@ -37,7 +37,31 @@ const addDeck = async (title) => {
   }
 }
 
+const addCardIdToDeck = async (deckId, cardId) => {
+  try {
+    const decks = await loadDecks()
+    const deck = decks[deckId]
+
+    await AsyncStorage.setItem(KEY_DECKS, JSON.stringify({
+      ...decks,
+      [deck.id]: {
+        ...deck,
+        cardIds: [
+          ...deck.cardIds,
+          cardId,
+        ]
+      },
+    }))
+
+    return deck
+  } catch (error) {
+    console.warn('storage/addCardIdToDeck failed', error)
+    return null
+  }
+}
+
 export {
   loadDecks,
   addDeck,
+  addCardIdToDeck,
 }

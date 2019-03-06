@@ -20,6 +20,17 @@ const styles = StyleSheet.create({
   },
 })
 class DeckDetail extends React.PureComponent {
+
+  onGoToNewCard = () => {
+    this.props.navigation.navigate('CardNew', {
+      deckId: this.props.deck.id,
+    })
+  }
+
+  onStartQuiz = () => {
+    this.props.navigation.navigate('Quiz')
+  }
+
   render() {
     const { deck } = this.props
     return (
@@ -28,11 +39,11 @@ class DeckDetail extends React.PureComponent {
         <Text style={styles.cardsCounter}>{deck.cardIds.length} cards</Text>
         <Button
           title="Create New Question"
-          onPress={() => this.props.navigation.navigate('CardNew')}
+          onPress={this.onGoToNewCard}
         />
         <Button
           title="Start a Quiz"
-          onPress={() => this.props.navigation.navigate('Quiz')}
+          onPress={this.onStartQuiz}
         />
       </View>
     )

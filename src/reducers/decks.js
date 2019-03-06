@@ -2,6 +2,9 @@ import {
   LOAD_DECKS,
   ADD_DECK,
 } from 'src/src/actions/decks'
+import {
+  ADD_CARD,
+} from 'src/src/actions/cards'
 
 const decks = (state = {}, action) => {
   switch (action.type) {
@@ -12,6 +15,18 @@ const decks = (state = {}, action) => {
         ...state,
         [action.deck.id]: {
           ...action.deck,
+        }
+      }
+    case ADD_CARD:
+      const deck = state[action.card.deckId]
+      return {
+        ...state,
+        [deck.id]: {
+          ...deck,
+          cardIds: [
+            ...deck.cardIds,
+            action.card.id,
+          ],
         }
       }
     default:
