@@ -28,7 +28,9 @@ class DeckDetail extends React.PureComponent {
   }
 
   onStartQuiz = () => {
-    this.props.navigation.navigate('Quiz')
+    this.props.navigation.navigate('Quiz', {
+      deckId: this.props.deck.id,
+    })
   }
 
   render() {
@@ -44,6 +46,7 @@ class DeckDetail extends React.PureComponent {
         <Button
           title="Start a Quiz"
           onPress={this.onStartQuiz}
+          disabled={deck.cardIds.length === 0}
         />
       </View>
     )
