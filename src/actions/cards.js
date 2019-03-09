@@ -8,7 +8,7 @@ const ADD_CARD = 'ADD_CARD'
 
 const actionLoadCards = (cards) => {
   return {
-    type: LOAD_DECKS,
+    type: LOAD_CARDS,
     cards,
   }
 }
@@ -26,7 +26,7 @@ const loadCards = () => async (dispatch, getState) => {
     dispatch(actionLoadCards(cards))
     return cards
   } catch (error) {
-    console.warn('Error in loadCards', e)
+    console.warn('Error in loadCards', error)
     return null
   }
 }
@@ -37,7 +37,7 @@ const addCard = (deckId, question, answer) => async (dispatch, getState) => {
     dispatch(actionAddCard(card))
     return card
   } catch (error) {
-    console.warn('Error in addCard', e)
+    console.warn('Error in addCard', error)
     return null
   }
 }

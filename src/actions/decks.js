@@ -26,7 +26,7 @@ const loadDecks = () => async (dispatch, getState) => {
     dispatch(actionLoadDecks(decks))
     return decks
   } catch (error) {
-    console.warn('Error in loadDecks', e)
+    console.warn('Error in loadDecks', error)
     return null
   }
 }
@@ -37,7 +37,7 @@ const addDeck = (title) => async (dispatch, getState) => {
     dispatch(actionAddDeck(deck))
     return deck
   } catch (error) {
-    console.warn('Error in addDeck', e)
+    console.warn('Error in addDeck', error)
     return null
   }
 }
