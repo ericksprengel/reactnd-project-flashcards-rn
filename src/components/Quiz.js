@@ -9,33 +9,55 @@ import R from 'ramda'
 import { loadCards as loadCardsAction} from 'src/src/actions/cards'
 import commonStyles from 'src/src/utils/commonStyles'
 
+const Card = ({ card, showAnswer }) => (
+  <Fragment>
+    { !showAnswer
+      ? <Text>{card.question}</Text>
+      : <Text>{card.answer}</Text>
+    }
+  </Fragment>
+)
+
 class Quiz extends React.PureComponent {
   state = {
     questionIndex: 0,
     score: 0,
+    showAnswer: false,
   }
 
   componentDidMount() {
     this.props.loadCards()
   }
 
-  onNextCard = () => {
+  onShowAnswer = () => {
+    this.setState({
+      showAnswer: true,
+    })
+  }
+
+  onNextCard = (isCorrect) => {
     const { cards } = this.props
     const {
       questionIndex,
       score,
     } = this.state
 
+    const updatedScore = isCorrect
+      ? score + 1
+      : score
     const nextQuestionIndex = questionIndex + 1
+
     if (nextQuestionIndex === cards.length) {
       this.props.navigation.navigate('QuizResult', {
-        score,
+        score: updatedScore,
       })
       return
     }
 
     this.setState({
       questionIndex: nextQuestionIndex,
+      showAnswer: false,
+      score: updatedScore,
     })
   }
 
@@ -47,6 +69,7 @@ class Quiz extends React.PureComponent {
     } = this.props
     const {
       questionIndex,
+      showAnswer,
     } = this.state
 
     if (loading) {
@@ -60,12 +83,30 @@ class Quiz extends React.PureComponent {
     return (
       <View style={commonStyles.center}>
         <Text>{`${deck.title} - ${questionIndex + 1}/${cards.length}`}</Text>
-        <Text>{card.question}</Text>
-        <Text>{card.answer}</Text>
-        <Button
-          title="next"
-          onPress={this.onNextCard}
+        <Card
+          card={card}
+          showAnswer={showAnswer}
         />
+        { !showAnswer
+          ? (
+            <Button
+              title="Show Answer"
+              onPress={this.onShowAnswer}
+            />
+          )
+          : (
+            <Fragment>
+              <Button
+                title="Correct"
+                onPress={() => this.onNextCard(true)}
+              />
+              <Button
+                title="Wrong"
+                onPress={() => this.onNextCard(false)}
+              />
+            </Fragment>
+          )
+        }
       </View>
     )
   }
