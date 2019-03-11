@@ -50,6 +50,13 @@ const QuizResultBar = ({ score, total }) => {
 }
 
 class QuizResult extends React.PureComponent {
+
+  onRestartQuiz = () => {
+    this.props.navigation.replace('Quiz', {
+      deckId: this.props.deck.id,
+    })
+  }
+
   render() {
     const { deck } = this.props
     const score = this.props.navigation.getParam('score')
@@ -65,8 +72,12 @@ class QuizResult extends React.PureComponent {
           total={total}
         />
         <Button
-          title="go to DeckList"
-          onPress={() => this.props.navigation.navigate('DeckList')}
+          title="Restart Quiz"
+          onPress={this.onRestartQuiz}
+        />
+        <Button
+          title="Back to Deck"
+          onPress={() => this.props.navigation.goBack()}
         />
       </View>
     )
