@@ -36,7 +36,7 @@ class Quiz extends React.PureComponent {
   }
 
   onNextCard = (isCorrect) => {
-    const { cards } = this.props
+    const { cards, deck } = this.props
     const {
       questionIndex,
       score,
@@ -48,7 +48,8 @@ class Quiz extends React.PureComponent {
     const nextQuestionIndex = questionIndex + 1
 
     if (nextQuestionIndex === cards.length) {
-      this.props.navigation.navigate('QuizResult', {
+      this.props.navigation.replace('QuizResult', {
+        deckId: deck.id,
         score: updatedScore,
       })
       return
@@ -112,8 +113,7 @@ class Quiz extends React.PureComponent {
   }
 }
 
-mapStateToProps = (state, { navigation }) => {
-  const { decks, cards } = state
+mapStateToProps = ( {decks, cards }, { navigation }) => {
   const deck = decks[navigation.getParam('deckId')]
   const loading = R.isEmpty(cards)
 
