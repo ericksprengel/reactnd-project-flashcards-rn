@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -9,15 +8,25 @@ import {
 import { connect } from 'react-redux'
 import { addDeck as addDeckAction } from 'src/src/actions/decks'
 import commonStyles from 'src/src/utils/commonStyles'
+import Button from './Button'
 
 const styles = StyleSheet.create({
+  inputLabel: {
+    marginHorizontal: 20,
+    fontSize: 24,
+    alignSelf: 'flex-start',
+  },
   input: {
-    height: 40,
+    padding: 20,
     alignSelf: 'stretch',
-    margin: 10,
+    marginHorizontal: 20,
+    fontSize: 20,
     borderColor: 'gray',
     borderWidth: 1,
   },
+  button: {
+    margin: 20,
+  }
 })
 class DeckNew extends React.PureComponent {
   state = {
@@ -35,15 +44,17 @@ class DeckNew extends React.PureComponent {
   render() {
     return (
       <View style={commonStyles.center}>
-        <Text>Title</Text>
+        <Text style={styles.inputLabel}>Title</Text>
         <TextInput
           style={styles.input}
           onChangeText={(title) => this.setState({title})}
           value={this.state.title}
         />
         <Button
+          style={styles.button}
           title="Create Deck"
           onPress={this.onAddDeck}
+          disabled={!this.state.title}
         />
       </View>
     )

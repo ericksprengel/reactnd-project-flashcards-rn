@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -9,6 +8,7 @@ import {
 import { connect } from 'react-redux'
 import { addCard as addCardAction } from 'src/src/actions/cards'
 import commonStyles from 'src/src/utils/commonStyles'
+import Button from './Button'
 
 const styles = StyleSheet.create({
   input: {
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 })
+
 class CardNew extends React.PureComponent {
   state = {
     question: '',

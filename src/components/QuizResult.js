@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-  Button,
   StyleSheet,
   Text,
   View,
 } from 'react-native'
 import commonStyles from 'src/src/utils/commonStyles'
+import Button from './Button'
 
 const QuizResultBar = ({ score, total }) => {
   const styles = StyleSheet.create({

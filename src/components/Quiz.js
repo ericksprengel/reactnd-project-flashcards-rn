@@ -1,13 +1,33 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import {
-  Button,
+  StyleSheet,
   Text,
   View,
 } from 'react-native'
 import R from 'ramda'
 import { loadCards as loadCardsAction} from 'src/src/actions/cards'
 import commonStyles from 'src/src/utils/commonStyles'
+import Button from './Button'
+
+
+const styles = StyleSheet.create({
+  buttonShowAnswer: {
+    margin: 10,
+  },
+  buttonCorrect: {
+    margin: 10,
+    flex: 1,
+  },
+  buttonWrong: {
+    margin: 10,
+    flex: 1,
+    backgroundColor: '#C51924',
+  },
+  actionsContainer: {
+    flexDirection: 'row',
+  },
+})
 
 const Card = ({ card, showAnswer }) => (
   <Fragment>
@@ -91,21 +111,24 @@ class Quiz extends React.PureComponent {
         { !showAnswer
           ? (
             <Button
+              style={styles.buttonShowAnswer}
               title="Show Answer"
               onPress={this.onShowAnswer}
             />
           )
           : (
-            <Fragment>
+            <View style={styles.actionsContainer}>
               <Button
+                style={styles.buttonCorrect}
                 title="Correct"
                 onPress={() => this.onNextCard(true)}
               />
               <Button
+                style={styles.buttonWrong}
                 title="Wrong"
                 onPress={() => this.onNextCard(false)}
               />
-            </Fragment>
+            </View>
           )
         }
       </View>

@@ -1,23 +1,38 @@
 import React from 'react'
 import {
-  Button,
   StyleSheet,
   Text,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import commonStyles from 'src/src/utils/commonStyles'
+import Button from './Button'
 
 const styles = StyleSheet.create({
+  deckCard: {
+    alignSelf: 'stretch',
+    backgroundColor: '#fff',
+    margin: 20,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+  },
   title: {
-    fontSize: 32,
+    fontSize: 48,
     color: '#444',
+    padding: 20,
   },
   cardsCounter: {
     fontSize: 14,
     color: '#777',
-    margin: 5,
+    alignSelf: 'flex-end',
   },
+  button: {
+    margin: 10,
+  }
 })
 class DeckDetail extends React.PureComponent {
 
@@ -37,9 +52,17 @@ class DeckDetail extends React.PureComponent {
     const { deck } = this.props
     return (
       <View style={commonStyles.center}>
-        <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.cardsCounter}>{deck.cardIds.length} cards</Text>
+        <View
+          style={styles.deckCard}
+        >
+          <Text style={styles.title}>{deck.title}</Text>
+          <Text style={styles.cardsCounter}>
+            {deck.cardIds.length} cards
+          </Text>
+        </View>
         <Button
+          style={styles.button}
+          type="outlined"
           title="Create New Question"
           onPress={this.onGoToNewCard}
         />
