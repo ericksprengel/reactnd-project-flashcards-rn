@@ -12,30 +12,58 @@ import Button from './Button'
 
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 36,
+    color: '#333',
+    alignSelf: 'center',
+    margin: 20,
+  },
+  progress: {
+    fontSize: 22,
+    color: '#777',
+    margin: 20,
+  },
   buttonShowAnswer: {
-    margin: 10,
+    paddingVertical: 15,
+    marginHorizontal: 10,
+    marginVertical: 40,
   },
   buttonCorrect: {
-    margin: 10,
+    paddingVertical: 15,
+    marginHorizontal: 10,
+    marginVertical: 40,
     flex: 1,
   },
   buttonWrong: {
-    margin: 10,
+    paddingVertical: 15,
+    marginHorizontal: 10,
+    marginVertical: 40,
     flex: 1,
     backgroundColor: '#C51924',
   },
   actionsContainer: {
     flexDirection: 'row',
   },
+  deckCard: {
+    alignSelf: 'stretch',
+    backgroundColor: '#fff',
+    margin: 20,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+  },
 })
 
 const Card = ({ card, showAnswer }) => (
-  <Fragment>
+  <View style={styles.deckCard}>
     { !showAnswer
       ? <Text>{card.question}</Text>
       : <Text>{card.answer}</Text>
     }
-  </Fragment>
+  </View>
 )
 
 class Quiz extends React.PureComponent {
@@ -105,12 +133,22 @@ class Quiz extends React.PureComponent {
 
     const card = cards[questionIndex]
     return (
-      <View style={commonStyles.center}>
-        <Text>{`${deck.title} - ${questionIndex + 1}/${cards.length}`}</Text>
-        <Card
-          card={card}
-          showAnswer={showAnswer}
-        />
+      <View style={{flex: 1}}>
+        <Text style={styles.title}>
+          {deck.title}
+        </Text>
+        <View style={
+          [commonStyles.center,
+          {flex: 1}
+        ]}>
+          <Card
+            card={card}
+            showAnswer={showAnswer}
+          />
+          <Text style={styles.subtitle}>
+            {`${questionIndex + 1}/${cards.length}`}
+          </Text>
+        </View>
         { !showAnswer
           ? (
             <Button

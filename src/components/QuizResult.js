@@ -12,13 +12,13 @@ import Button from './Button'
 const styles = StyleSheet.create({
   container: {
     margin: 20,
-    flexDirection: 'row',
     alignItems: 'center',
   },
   message: {
     fontSize: 36,
+    fontWeight: '500',
     color: '#333',
-    marginRight: 10,
+    marginVertical: 20,
   },
   score: {
     fontSize: 28,
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#4285f4',
     overflow: 'hidden',
-    flex: 1,
     flexDirection: 'row',
   },
   button: {
