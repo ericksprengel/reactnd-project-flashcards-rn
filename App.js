@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { createStackNavigator, createAppContainer } from "react-navigation"
@@ -10,6 +10,7 @@ import DeckDetail from 'src/src/components/DeckDetail'
 import CardNew from 'src/src/components/CardNew'
 import Quiz from 'src/src/components/Quiz'
 import QuizResult from 'src/src/components/QuizResult'
+import NotificationManager from 'src/src/components/NotificationManager'
 
 const AppNavigator = createStackNavigator(
   {
@@ -36,6 +37,7 @@ const store = createStore(
 
 const Root = () => (
   <Provider store={store}>
+    <NotificationManager />
     <AppContainer />
   </Provider>
 )

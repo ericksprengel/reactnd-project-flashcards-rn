@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 import R from 'ramda'
 import { loadCards as loadCardsAction} from 'src/src/actions/cards'
+import { scheduleNotification } from 'src/src/utils/notifications'
 import commonStyles from 'src/src/utils/commonStyles'
 import Button from './Button'
 
@@ -99,6 +100,7 @@ class Quiz extends React.PureComponent {
     const nextQuestionIndex = questionIndex + 1
 
     if (nextQuestionIndex === cards.length) {
+      scheduleNotification()
       this.props.navigation.replace('QuizResult', {
         deckId: deck.id,
         score: updatedScore,
