@@ -39,6 +39,9 @@ const Card = ({ card, showAnswer }) => (
 )
 
 class Quiz extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Quiz',
+  }
   state = {
     questionIndex: 0,
     score: 0,

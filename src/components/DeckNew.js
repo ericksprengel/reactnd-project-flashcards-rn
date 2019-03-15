@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
   }
 })
 class DeckNew extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Add Deck',
+  }
   state = {
     title: '',
   }

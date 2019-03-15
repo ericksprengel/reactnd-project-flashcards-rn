@@ -50,6 +50,9 @@ const QuizResultBar = ({ score, total }) => {
 }
 
 class QuizResult extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Result',
+  }
 
   onRestartQuiz = () => {
     this.props.navigation.replace('Quiz', {

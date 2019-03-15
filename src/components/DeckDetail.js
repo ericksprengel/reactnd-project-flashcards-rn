@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
   }
 })
 class DeckDetail extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Deck',
+  }
 
   onGoToNewCard = () => {
     this.props.navigation.navigate('CardNew', {

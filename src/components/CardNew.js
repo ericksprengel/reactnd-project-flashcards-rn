@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
 })
 
 class CardNew extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Add Card',
+  }
   state = {
     question: '',
     answer: '',
