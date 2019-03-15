@@ -5,8 +5,6 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
-import Divider from './Divider'
-
 
 const styles = StyleSheet.create({
   container: {
