@@ -8,31 +8,44 @@ import {
 import commonStyles from 'src/src/utils/commonStyles'
 import Button from './Button'
 
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  message: {
+    fontSize: 36,
+    color: '#333',
+    marginRight: 10,
+  },
+  score: {
+    fontSize: 28,
+    color: '#333',
+    marginRight: 10,
+  },
+  barContainer: {
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: '#4285f4',
+    overflow: 'hidden',
+    flex: 1,
+    flexDirection: 'row',
+  },
+  button: {
+    margin: 10,
+  }
+})
+
 const QuizResultBar = ({ score, total }) => {
-  const styles = StyleSheet.create({
-    container: {
-      margin: 20,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    score: {
-      fontSize: 28,
-      marginRight: 10,
-    },
-    barContainer: {
-      height: 50,
-      borderRadius: 25,
-      borderWidth: 2,
-      overflow: 'hidden',
-      flex: 1,
-      flexDirection: 'row',
-    },
+  const dynamicStyles = StyleSheet.create({
     correctAnswersStyle: {
-      backgroundColor: '#0f0',
+      backgroundColor: '#4285f4',
       flex: score,
     },
     wrongAnswersStyle: {
-      backgroundColor: '#f00',
       flex: total - score,
     }
   })
@@ -42,8 +55,8 @@ const QuizResultBar = ({ score, total }) => {
         {(score*100/total).toFixed(2)}%
       </Text>
       <View style={styles.barContainer}>
-        <View style={styles.correctAnswersStyle} />
-        <View style={styles.wrongAnswersStyle} />
+        <View style={dynamicStyles.correctAnswersStyle} />
+        <View style={dynamicStyles.wrongAnswersStyle} />
       </View>
     </View>
   )
@@ -69,12 +82,14 @@ class QuizResult extends React.PureComponent {
       : 'Try again...'
     return (
       <View style={commonStyles.center}>
-        <Text>{message}</Text>
+        <Text style={styles.message}>{message}</Text>
         <QuizResultBar
           score={score}
           total={total}
         />
         <Button
+          style={styles.button}
+          type="outlined"
           title="Restart Quiz"
           onPress={this.onRestartQuiz}
         />
