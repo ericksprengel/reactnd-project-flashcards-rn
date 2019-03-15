@@ -2,22 +2,23 @@ import React from 'react'
 import {
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard as addCardAction } from 'src/src/actions/cards'
 import commonStyles from 'src/src/utils/commonStyles'
 import Button from './Button'
+import TextField from './TextField'
 
 const styles = StyleSheet.create({
   input: {
-    height: 40,
     alignSelf: 'stretch',
-    margin: 10,
-    borderColor: 'gray',
-    borderWidth: 1,
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
+  button: {
+    margin: 20,
+  }
 })
 
 class CardNew extends React.PureComponent {
@@ -40,20 +41,21 @@ class CardNew extends React.PureComponent {
   render() {
     return (
       <View style={commonStyles.center}>
-        <Text>Question</Text>
-        <TextInput
+        <TextField
+          label="Question"
           style={styles.input}
           onChangeText={(question) => this.setState({question})}
-          value={this.state.title}
+          value={this.state.question}
         />
-        <Text>Answer</Text>
-        <TextInput
+        <TextField
+          label="Answer"
           style={styles.input}
           onChangeText={(answer) => this.setState({answer})}
-          value={this.state.title}
+          value={this.state.answer}
         />
         <Button
           title="Create Card"
+          style={styles.button}
           onPress={this.onAddCard}
         />
       </View>

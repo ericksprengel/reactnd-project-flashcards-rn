@@ -1,28 +1,18 @@
 import React from 'react'
 import {
   StyleSheet,
-  Text,
-  TextInput,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck as addDeckAction } from 'src/src/actions/decks'
 import commonStyles from 'src/src/utils/commonStyles'
 import Button from './Button'
+import TextField from './TextField'
 
 const styles = StyleSheet.create({
-  inputLabel: {
-    marginHorizontal: 20,
-    fontSize: 24,
-    alignSelf: 'flex-start',
-  },
   input: {
-    padding: 20,
     alignSelf: 'stretch',
     marginHorizontal: 20,
-    fontSize: 20,
-    borderColor: 'gray',
-    borderWidth: 1,
   },
   button: {
     margin: 20,
@@ -44,8 +34,8 @@ class DeckNew extends React.PureComponent {
   render() {
     return (
       <View style={commonStyles.center}>
-        <Text style={styles.inputLabel}>Title</Text>
-        <TextInput
+        <TextField
+          label="Title"
           style={styles.input}
           onChangeText={(title) => this.setState({title})}
           value={this.state.title}
