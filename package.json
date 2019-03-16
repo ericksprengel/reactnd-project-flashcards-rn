@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "expo": "^32.0.0",
     "ramda": "^0.26.1",
     "react": "16.5.0",
